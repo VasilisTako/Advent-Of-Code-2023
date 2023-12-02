@@ -1,5 +1,4 @@
 
-import { dummyData } from "./dummyData";
 import { readFileSync } from 'fs';
 
 
