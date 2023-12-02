@@ -70,7 +70,7 @@ For the first part of Day 1, I implemented a solution in TypeScript. The core of
 **Key Concepts:** Regular Expressions, File I/O  
 
 #### Approach
-For the second part, I switched to Python due to its native support for overlapping matches in regular expressions, a feature I needed for this specific challenge and was being a bit challenging to be solved in js but regex still remains the same of the ts implementation and the business logic too. So I constructed a regex that combined both digit characters (`\d`) and word representations of numbers (like "one", "two", etc.). This allowed me to process the input effectively, capturing the required elements from each line the get the final result.
+For the second part, I switched to Python due to its native support for overlapping matches in regular expressions, a feature I needed for this specific challenge and was being a bit challenging to be solved in js but the regex still remains the same of the ts implementation and the business logic too. So I constructed a regex that combined both digit characters (`\d`) and word representations of numbers (like "one", "two", etc.). This allowed me to process the input effectively, capturing the required elements from each line the get the final result.
 
 ---
 
