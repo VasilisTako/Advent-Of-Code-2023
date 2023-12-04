@@ -33,6 +33,7 @@ public class Day3 {
         List<String> engineSchematicLines = ReadTxt.readFile(INPUT);
 
         int enginePartNumbersSummed = calculateSumOfAdjacentPartNumbers(engineSchematicLines);
+        int gearRatiosSummed = calculateSumOfGearRatios(engineSchematicLines);
 
         System.out.println(ReadTxt.formatSectionHeader("DAY 3"));
         System.out.println("Sum of possible engine part numbers = " + enginePartNumbersSummed);
@@ -99,10 +100,47 @@ public class Day3 {
         return null;
     }
 
+    private int calculateSumOfGearRatios(List<String> engineSchematicLines) {
+        return IntStream.range(0, engineSchematicLines.size())
+                .map(i -> sumGearRatiosInSchematicLine(engineSchematicLines, i))
+                .sum();
+    }
+
+    private int sumGearRatiosInSchematicLine(List<String> engineSchematicLines, int lineNumber) {
+        String line = engineSchematicLines.get(lineNumber);
+
+        return IntStream.range(0, line.length())
+                .filter(charIndex -> isGearCharacter(line.charAt(charIndex)))
+                .map(charIndex -> calculateGearRatioNearSymbol(engineSchematicLines, lineNumber, charIndex))
+                .sum();
+    }
+
+    private int calculateGearRatioNearSymbol(List<String> engineSchematicLines, int gearLineNumber, int gearLocationIndex) {
+        Set<PartNumberDetail> partNumbersAdjacentToGear = Arrays.stream(AdjacentDirection.values())
+                .map(direction -> {
+                    AdjacentPosition indexes = getAdjacentIndexForDirection(direction, gearLineNumber, gearLocationIndex);
+                    return extractPartNumberAtPosition(engineSchematicLines,indexes);
+                })
+                .filter(Objects::nonNull)
+                .collect(Collectors.toSet());
+
+
+        if (partNumbersAdjacentToGear.size() == 2) {
+            return partNumbersAdjacentToGear.stream()
+                    .mapToInt(PartNumberDetail::getNumber)
+                    .reduce(1, (a, b) -> a * b);
+        }
+
+        return 0;
+    }
+
     private boolean isSymbolCharacter(char character) {
         return !(Character.isDigit(character) || character == '.');
     }
 
+    private boolean isGearCharacter(char character) {
+        return character == '*';
+    }
 
     private AdjacentPosition getAdjacentIndexForDirection(AdjacentDirection direction, int currentLineNumber, int foundSymbolIndex) {
         Point directionOffset = DIRECTION_MAP.get(direction);
