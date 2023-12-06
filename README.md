@@ -336,18 +336,47 @@ _Take a seat in the large pile of colorful cards. How many points are they worth
 
 **--- Part Two ---**  
 
+_Just as you're about to report your findings to the Elf, one of you realizes that the rules have actually been printed on the back of every card this whole time._
+
+There's no such thing as "points". Instead, scratchcards only cause you to win more scratchcards equal to the number of winning numbers you have.
+
+_Specifically, you win copies of the scratchcards below the winning card equal to the number of matches. So, if card 10 were to have 5 matching numbers, you would win one copy each of cards 11, 12, 13, 14, and 15._
+
+Copies of scratchcards are scored like normal scratchcards and have the same card number as the card they copied. So, if you win a copy of card 10 and it has 5 matching numbers, it would then win a copy of the same cards that the original card 10 won: cards 11, 12, 13, 14, and 15. This process repeats until none of the copies cause you to win any more cards. (Cards will never make you copy a card past the end of the table.)
+
+This time, the above example goes differently:
+
+```
+Card 1: 41 48 83 86 17 | 83 86  6 31 17  9 48 53
+Card 2: 13 32 20 16 61 | 61 30 68 82 17 32 24 19
+Card 3:  1 21 53 59 44 | 69 82 63 72 16 21 14  1
+Card 4: 41 92 73 84 69 | 59 84 76 51 58  5 54 83
+Card 5: 87 83 26 28 32 | 88 30 70 12 93 22 82 36
+Card 6: 31 18 13 56 72 | 74 77 10 23 35 67 36 11
+```
+
+- Card 1 has four matching numbers, so you win one copy each of the next four cards: cards 2, 3, 4, and 5.
+- Your original card 2 has two matching numbers, so you win one copy each of cards 3 and 4.
+- Your copy of card 2 also wins one copy each of cards 3 and 4.
+- Your four instances of card 3 (one original and three copies) have two matching numbers, so you win four copies each of cards 4 and 5.
+- Your eight instances of card 4 (one original and seven copies) have one matching number, so you win eight copies of card 5.
+- Your fourteen instances of card 5 (one original and thirteen copies) have no matching numbers and win no more cards.
+- Your one instance of card 6 (one original) has no matching numbers and wins no more cards.
+- Once all of the originals and copies have been processed, you end up with 1 instance of card 1, 2 instances of card 2, 4 instances of card 3, 8 instances of card 4, 14 instances of card 5, and 1 instance of card 6. In total, this example pile of scratchcards causes you to ultimately have 30 scratchcards!
+
+_Process all of the original and copied scratchcards until no more scratchcards are won. Including the original set of scratchcards, how many total scratchcards do you end up with?_
 
 ### Solutions
 
-**Your puzzle answer for part 1 was XXXX.**
+**Your puzzle answer for part 1 was 25010.**
 
-**Your puzzle answer for part 2 was XXXX.**
+**Your puzzle answer for part 2 was 9924412.**
 
 _Both parts of this puzzle are complete! They provide two gold stars: **_
 
 ### Part 1:
 
-**Language Used:**   
+**Language Used:**  Python
 **Key Concepts:**
 
 #### Approach
@@ -355,7 +384,7 @@ _Both parts of this puzzle are complete! They provide two gold stars: **_
 
 ### Part 2:
 
-**Language Used:** 
+**Language Used:** Python
 **Key Concepts:**
 
 #### Approach
@@ -476,24 +505,40 @@ What is the lowest location number that corresponds to any of the initial seed n
 
 **--- Part Two ---**  
 
+Everyone will starve if you only plant such a small number of seeds. Re-reading the almanac, it looks like the seeds: line actually describes ranges of seed numbers.
+
+_The values on the initial seeds: line come in pairs. Within each pair, the first value is the start of the range and the second value is the length of the range. So, in the first line of the example above:_
+
+```
+seeds: 79 14 55 13
+```
+
+This line describes two ranges of seed numbers to be planted in the garden. The first range starts with seed number 79 and contains 14 values: 79, 80, ..., 91, 92. The second range starts with seed number 55 and contains 13 values: 55, 56, ..., 66, 67.
+
+Now, rather than considering four seed numbers, you need to consider a total of 27 seed numbers.
+
+In the above example, the lowest location number can be obtained from seed number 82, which corresponds to soil 84, fertilizer 84, water 84, light 77, temperature 45, humidity 46, and location 46. So, the lowest location number is 46.
+
+_Consider all of the initial seed numbers listed in the ranges on the first line of the almanac. What is the lowest location number that corresponds to any of the initial seed numbers?_
+
 ### Solutions
 
-**Your puzzle answer for part 1 was XXXX.**
+**Your puzzle answer for part 1 was 282277027.**
 
-**Your puzzle answer for part 2 was XXXX.**
+**Your puzzle answer for part 2 was 11554135.**
 
 _Both parts of this puzzle are complete! They provide two gold stars: **_
 
 ### Part 1:
 
-**Language Used:**   
+**Language Used:** Python
 **Key Concepts:** 
 
 #### Approach
 
 ### Part 2:
 
-**Language Used:**   
+**Language Used:** Python
 **Key Concepts:** 
 
 #### Approach
